@@ -13,6 +13,11 @@ class ProductPage(BasePage):
         productPrice = self.get_product_price()
         self.test_product_price(productPrice)
 
+    def just_add_product_to_basket(self):
+        add_button = self.browser.find_element(*ProductPageLocators.ADD_BUTTON) 
+        add_button.click()
+        #self.solve_quiz_and_get_code()
+
     def test_product_name(self, productName):
         messageElement = self.browser.find_element(*ProductPageLocators.MESSAGE_ELEMENT)
         print(f'Message Name: {messageElement.text}')
@@ -31,4 +36,12 @@ class ProductPage(BasePage):
 
     def get_product_price(self):
         priceElement = self.browser.find_element(*ProductPageLocators.PRICE_ELEMENT)
-        return priceElement.text        
+        return priceElement.text       
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ELEMENT), \
+        "Success message is presented, but should not be" 
+
+    def should_disappeared_message(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_ELEMENT), \
+        "Disappear message is not disappeared"
