@@ -25,10 +25,10 @@ class ProductPage(BasePage):
         assert messageElement.text==productName, "Name of product is incorrect"
 
     def test_product_price(self, productPrice):
-        busketElement = self.browser.find_element(*ProductPageLocators.BUSKET_ELEMENT)
+        basketElement = self.browser.find_element(*ProductPageLocators.BASKET_ELEMENT)
         print(f'Product price: {productPrice}')
-        print(f'Busket  price: {busketElement.text}')
-        assert productPrice==busketElement.text, "Price in the busket is incorrect"
+        print(f'Basket  price: {basketElement.text}')
+        assert productPrice==basketElement.text, "Price in the basket is incorrect"
 
     def get_product_name(self):
         productElement = self.browser.find_element(*ProductPageLocators.PRODUCT_ELEMENT)
